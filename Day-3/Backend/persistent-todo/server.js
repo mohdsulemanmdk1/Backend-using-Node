@@ -75,8 +75,3 @@ fs.writeFileSync(filePath,JSON.stringify(data),"utf8")
 app.listen("8080",()=>{
     console.log("the persistent server is listening at 8080 port ")
 })
-
-
-
-
-
