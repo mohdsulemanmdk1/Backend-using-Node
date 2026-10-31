@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@swc/core": "^1.16.20",
     "init": "^0.1.2",
     "node": "^26.12.0",
     "npm": "^12.2.0",
@@ -24,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/mohdsulemanmdk1/Backend-using-Node/issues"
   },
-  "homepage": "https://github.com/mohdsulemanmdk1/Backend-using-Node#readme"
+  "homepage": "https://github.com/mohdsulemanmdk1/Backend-using-Node#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
 }
