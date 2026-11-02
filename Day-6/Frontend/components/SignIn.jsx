@@ -18,6 +18,7 @@ const SignIn = () => {
         })
         let data = await response.json()
 
+        localStorage.setItem("token", data.token)
 
 
     }
@@ -32,7 +33,7 @@ const SignIn = () => {
             setPassword(e.target.value)
         }} />
        
-            <button type='submit'> Sign Up</button>
+            <button type='submit'> Sign In</button>
             </form>
     </div>
 }

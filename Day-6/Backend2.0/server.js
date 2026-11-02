@@ -1,11 +1,15 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
+import cors from "cors";
 let app = express()
 
 app.use(express.json())
 
 let SECRET_KEY = "i am iron man "
 let arr = []
+
+app.use(cors());
+app.use(express.json());
 
 
 
@@ -18,22 +22,6 @@ let authMiddleWare = (req,res,next)=>{
     next()
     
 }
-app.get("/courses",authMiddleWare,(req,res)=>{
-
-if(authMiddleWare){
-
-    res.json({
-        data: {
-            courseId: "77",
-            courseName: "Data Analysis",
-            material: "PYTHON, SQL",
-        },
-    });
-} else{
-    console.log("token not defined ")
-}
-
-})
 
 app.post("/SignUp",(req,res)=>{
 
@@ -61,40 +49,59 @@ res.json({
 app.post("/SignIn",(req,res)=>{
 
    let {username,password } = req.body
-
- let verifiedUser =    arr.find((e)=>{
-        if(e.username === username && e.password === password){
-            return true
+   
+   let verifiedUser =    arr.find((e)=>{
+       if(e.username === username && e.password === password){
+           return true
         }else{
             return false
         }
     })
-
+    
     if(!verifiedUser){
-       return  res.json({
+        return  res.json({
             details : "in valid user"
         })
     }
-
-
-let token = jwt.sign({
-    username : verifiedUser.username,
-    message: "this token is for authentication...",
-
-},SECRET_KEY)
-
-
-
-res.json({
-    msg : "sign in successfully",
-    token
+    
+    
+    let token = jwt.sign({
+        username : verifiedUser.username,
+        message: "this token is for authentication...",
+        
+    },SECRET_KEY)
+    
+    
+    
+    res.json({
+        msg : "sign in successfully",
+        token
+    })
+    
+    
+    
 })
 
 
 
+
+
+app.get("/courses",authMiddleWare,(req,res)=>{
+
+if(authMiddleWare){
+
+    res.json({
+        data: {
+            courseId: "77",
+            courseName: "Data Analysis",
+            material: "PYTHON, SQL",
+        },
+    });
+} else{
+    console.log("token not defined ")
+}
+
 })
-
-
 
 
 
